@@ -6,6 +6,7 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         leading: const Padding(
@@ -40,7 +41,7 @@ class _ChatView extends StatelessWidget {
                 
               )
             ),
-            Text("The one piece is real!")
+            const Text("Hello world")
           ],
         ),
       ),
