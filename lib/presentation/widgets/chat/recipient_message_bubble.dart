@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/domain/entities/message.dart';
 
 class RecipientMessageBubble extends StatelessWidget {
 
+  final Message message;
 
-  const RecipientMessageBubble({super.key});
+  const RecipientMessageBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +20,15 @@ class RecipientMessageBubble extends StatelessWidget {
             color: colors.secondary,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Text("The One Piece is real!", style: TextStyle(color: Colors.white),),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(message.text, style: const TextStyle(color: Colors.white),),
           ),
         ),
 
         const SizedBox(height: 5,),
 
-        const _ImageBubble(),
+        _ImageBubble(imageUrl: message.imageUrl!,),
 
         const SizedBox(height: 10,),
       ],
@@ -35,7 +37,9 @@ class RecipientMessageBubble extends StatelessWidget {
 }
 
 class _ImageBubble extends StatelessWidget {
-  const _ImageBubble({super.key});
+  final String imageUrl;
+
+  const _ImageBubble({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +48,7 @@ class _ImageBubble extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Image.network(
-        'https://media.tenor.com/OwCpyCczAwkAAAAM/chopper.gif',
+        imageUrl,
         width: size.width * 0.7,
         height: 150,
         fit: BoxFit.cover,
